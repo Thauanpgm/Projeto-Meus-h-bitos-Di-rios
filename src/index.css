@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+
+/* ── Variáveis ───────────────────────────────────────────── */
+:root {
+  --bg:           #f5f0fb;
+  --bg-dots:      #e8dff5;
+  --surface:      #ffffff;
+  --surface-2:    #faf7fe;
+  --surface-3:    #f0eafa;
+
+  --purple-50:    #f3f0fd;
+  --purple-100:   #e4ddfb;
+  --purple-200:   #c9bbf7;
+  --purple-400:   #9b84ef;
+  --purple-500:   #7c62e3;
+  --purple-600:   #5e43c9;
+  --purple-800:   #3a2880;
+
+  --pink-100:     #fce8f3;
+  --pink-400:     #e879b8;
+
+  --text:         #2d2040;
+  --text-muted:   #8272a8;
+  --text-dim:     #b8acd4;
+
+  --danger:       #e05c7a;
+  --danger-soft:  #fde8ed;
+
+  --border:       #e6ddf5;
+  --border-soft:  #ede7f8;
+
+  --radius-sm:    6px;
+  --radius:       12px;
+  --radius-lg:    18px;
+  --radius-xl:    24px;
+  --radius-pill:  999px;
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 15px;
+
+  /* bolinhas delicadas no fundo */
+  background-image: radial-gradient(circle, var(--bg-dots) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ── Tipografia ─────────────────────────────────────────── */
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; margin-bottom: 1.2rem; }
+h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; }
+h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
+
+/* ── Layout Principal ────────────────────────────────────── */
+main {
+  max-width: 860px;
+  margin: 3rem auto;
+  padding: 0 1.8rem;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.header {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0 2.5rem;
+  height: 62px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--purple-600);
+  letter-spacing: -0.02em;
+}
+
+.header-logo::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: var(--purple-400);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.header-nav { display: flex; gap: 0.3rem; }
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.82rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.nav-link:hover {
+  color: var(--purple-600);
+  background: var(--purple-50);
+}
+
+.nav-link.ativo {
+  color: var(--purple-600);
+  background: var(--purple-100);
+  border-color: var(--purple-200);
+  font-weight: 600;
+}
+
+/* ── Formulário ──────────────────────────────────────────── */
+.habit-form {
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 24px rgba(124, 98, 227, 0.07);
+}
+
+.habit-form div { display: flex; flex-direction: column; }
+
+.habit-form label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  color: var(--text-dim);
+}
+
+.habit-form input {
+  padding: 0.65rem 0.9rem;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.habit-form input::placeholder { color: var(--text-dim); }
+
+.habit-form input:focus {
+  border-color: var(--purple-400);
+  box-shadow: 0 0 0 3px rgba(155, 132, 239, 0.15);
+  background: var(--surface);
+}
+
+.habit-form button {
+  grid-column: 1 / -1;
+  background: var(--purple-500);
+  color: #fff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: var(--radius);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.habit-form button:hover {
+  background: var(--purple-600);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(94, 67, 201, 0.3);
+}
+
+.habit-form button:active { transform: translateY(0); }
+
+/* ── Lista e Cards ───────────────────────────────────────── */
+ul {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.habit-card {
+  background: var(--surface);
+  padding: 1.4rem 1.6rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+  box-shadow: 0 2px 12px rgba(124, 98, 227, 0.04);
+}
+
+.habit-card:hover {
+  border-color: var(--purple-200);
+  box-shadow: 0 6px 24px rgba(124, 98, 227, 0.1);
+  transform: translateY(-2px);
+}
+
+.habit-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.3rem;
+}
+
+.habit-card-acoes {
+  margin-top: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+.btn-detalhes {
+  color: var(--purple-500);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: gap 0.2s, color 0.2s;
+}
+
+.btn-detalhes::after { content: '→'; }
+.btn-detalhes:hover { color: var(--purple-600); gap: 0.45rem; }
+
+.btn-remover-card {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s;
+}
+
+.btn-remover-card:hover {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+/* ── Resumo ─────────────────────────────────────────────── */
+.resumo {
+  display: flex;
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+
+.resumo-card {
+  flex: 1;
+  background: var(--surface);
+  padding: 1.6rem 1.2rem;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+  box-shadow: 0 2px 12px rgba(124, 98, 227, 0.04);
+}
+
+.resumo-card:hover {
+  border-color: var(--purple-200);
+  transform: translateY(-2px);
+}
+
+.resumo-card strong {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: var(--purple-500);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.resumo-card span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ── Botão Primário ──────────────────────────────────────── */
+.btn-primario {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--purple-500);
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(124, 98, 227, 0.25);
+}
+
+.btn-primario:hover {
+  background: var(--purple-600);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(94, 67, 201, 0.35);
+}
+
+/* ── Detalhe ─────────────────────────────────────────────── */
+.detalhe-card {
+  background: var(--surface);
+  padding: 2.5rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 24px rgba(124, 98, 227, 0.07);
+}
+
+.detalhe-info {
+  list-style: none;
+  margin: 1.8rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.detalhe-info li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.detalhe-info li:last-child { border-bottom: none; }
+
+.detalhe-info li strong {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.btn-voltar {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-voltar::before { content: '←'; transition: transform 0.2s; }
+.btn-voltar:hover { color: var(--purple-600); }
+.btn-voltar:hover::before { transform: translateX(-3px); }
+
+.btn-remover {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border: 1px solid #f5c5d0;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-remover:hover {
+  background: #fbd0da;
+  border-color: var(--danger);
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 2.5rem;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  margin-top: 4rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--purple-200); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--purple-400); }
+
+/* ── Seleção ─────────────────────────────────────────────── */
+::selection { background: var(--purple-100); color: var(--purple-800); }
+
+/* ── Animação de entrada ─────────────────────────────────── */
+@keyframes softUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+main > * { animation: softUp 0.4s ease both; }
+main > *:nth-child(1) { animation-delay: 0.05s; }
+main > *:nth-child(2) { animation-delay: 0.10s; }
+main > *:nth-child(3) { animation-delay: 0.15s; }
+main > *:nth-child(4) { animation-delay: 0.20s; }
